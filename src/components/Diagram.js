@@ -1,6 +1,7 @@
 import Diagram, { createSchema, useSchema } from 'beautiful-react-diagrams';
   import { Button } from 'beautiful-react-ui';
   import React, { useEffect } from 'react';
+  import './Diagram.css'
 
   import sentence from './Form';
   
@@ -11,11 +12,13 @@ import Diagram, { createSchema, useSchema } from 'beautiful-react-diagrams';
   });
   
   
-  const CustomRender = (content) => (
-      <div style={{backgroundColor: 'lightblue' }}>
-        <div role="button" style={{padding: '15px'}}>
+  const CustomRender = ({content}) => (
+      <div className='button' style={{width: '35px', fontSize: '0.6rem', textAlign: 'center'}}>
+        <a>
+        <div role="button">
           {content}
         </div>
+        </a>
       </div>
   );
   
@@ -32,7 +35,8 @@ import Diagram, { createSchema, useSchema } from 'beautiful-react-diagrams';
           const node={
             id: `node-${index}`,
             coordinates: [30+100*index, 150],
-            render: ()=><div style={{backgroundColor: 'lightblue',borderColor: 'black', width: '70px', borderRadius: '10px', padding: '8px'}} onClick={()=>clickNode(word)}>{word}</div>
+            content: word,
+            render: CustomRender,//()=><div style={{backgroundColor: 'lightblue',borderColor: 'black', width: '70px', borderRadius: '10px', padding: '8px'}} onClick={()=>clickNode(word)}>{word}</div>
           };
           addNode(node);
         });
